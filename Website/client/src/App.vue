@@ -9,6 +9,10 @@
       <GamesMenu />
     </div>
 
+    <div :class="$style.profileBarContainer">
+      <ProfileBar />
+    </div>
+
     <div :class="$style.chatContainer" ref="chatContainer">
       <Chat />
     </div>

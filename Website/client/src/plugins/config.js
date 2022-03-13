@@ -1,5 +1,8 @@
 const config = {
-  api: 'https://api.steam.pevo.xyz:3000',
+  name: 'Nazwa',
+  domain: '192.168.0.101',
+  api: 'https://192.168.0.101:3000/api/v1',
+  socket: '192.168.0.101:3000',
 };
 
 export default {
@@ -7,4 +10,5 @@ export default {
     // eslint-disable-next-line
     app.prototype.$config = config;
   },
+  config,
 };

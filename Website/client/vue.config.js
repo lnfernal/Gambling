@@ -4,5 +4,6 @@ module.exports = defineConfig({
   transpileDependencies: true,
   devServer: {
     https: true,
+    port: 8001,
   },
 });

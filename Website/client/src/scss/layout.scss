@@ -2,6 +2,7 @@ $chatWidth: 310px;
 $gamesMenuHeight: 90px;
 $menuHeight: 40px;
 $defaultMargin: 8px;
+$profileBarWidth: 310px;
 
 .mainContainer, .logoContainer, .gamesMenuContainer, .chatContainer {
   display: inline-flex;
@@ -18,9 +19,16 @@ $defaultMargin: 8px;
 
 .gamesMenuContainer {
   background: var(--dark2);
-  width: calc(100% - $chatWidth);
+  width: calc(100% - $chatWidth - $profileBarWidth);
   height: $gamesMenuHeight;
-  flex-basis: calc(100% - $chatWidth);
+  flex-basis: calc(100% - $chatWidth - $profileBarWidth);
+}
+
+.profileBarContainer {
+  background: var(--dark2);
+  width: $profileBarWidth;
+  height: $gamesMenuHeight;
+  flex-basis: $profileBarWidth;
 }
 
 .chatContainer {
@@ -34,7 +42,7 @@ $defaultMargin: 8px;
   height: 32px;
   background: yellow;
   position: absolute;
-  top: calc($gamesMenuHeight * 2 + $menuHeight + $defaultMargin);
+  top: calc($gamesMenuHeight * 3 + $menuHeight + $defaultMargin);
   left: $defaultMargin;
   display: none;
 }
@@ -71,13 +79,20 @@ $defaultMargin: 8px;
     height: $gamesMenuHeight;
     flex-basis: 100%;
   }
+
+  .profileBarContainer {
+    background: var(--dark2);
+    width: 100%;
+    height: $gamesMenuHeight;
+    flex-basis: 100%;
+  }
   
   .chatContainer {
     width: 100%;
-    height: calc(100% - $gamesMenuHeight * 2 - $menuHeight);
+    height: calc(100% - $gamesMenuHeight * 3 - $menuHeight);
     flex-basis: 100%;
     position: absolute;
-    top: calc($gamesMenuHeight * 2 + $menuHeight);
+    top: calc($gamesMenuHeight * 3 + $menuHeight);
     display: none;
   }
   .showChatButton {
@@ -86,7 +101,7 @@ $defaultMargin: 8px;
   
   .mainContainer {
     width: 100%;
-    height: calc(100% - $gamesMenuHeight * 2);
+    height: calc(100% - $gamesMenuHeight * 3);
   }
   
   .menuContainer {

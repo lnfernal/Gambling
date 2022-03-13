@@ -1,5 +1,6 @@
 import Logo from '../views/logo/main.vue';
 import GamesMenu from '../views/gamesMenu/main.vue';
+import ProfileBar from '../views/profileBar/main.vue';
 import Chat from '../views/chat/main.vue';
 import Menu from '../views/menu/main.vue';
 import Footer from '../views/footer/main.vue';
@@ -8,6 +9,7 @@ export default {
   components: {
     Logo,
     GamesMenu,
+    ProfileBar,
     Chat,
     Menu,
     Footer,
@@ -17,6 +19,11 @@ export default {
     return {
       chatState: false,
     };
+  },
+
+  mounted() {
+    document.title = `${this.$config.name}`;
+    this.$script('fa.js');
   },
 
   methods: {
