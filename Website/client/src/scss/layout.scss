@@ -8,23 +8,23 @@ $defaultMargin: 8px;
 }
 
 .logoContainer {
+  background: var(--dark2);
   width: $chatWidth;
   height: $gamesMenuHeight;
-  background: #a00;
   align-items: center;
   justify-content: center;
   flex-basis: $chatWidth;
 }
 
 .gamesMenuContainer {
-  background: #00a;
+  background: var(--dark2);
   width: calc(100% - $chatWidth);
   height: $gamesMenuHeight;
   flex-basis: calc(100% - $chatWidth);
 }
 
 .chatContainer {
-  background: #a0a;
+  background: var(--dark4);
   width: $chatWidth;
   height: calc(100% - $gamesMenuHeight);
   flex-basis: $chatWidth;
@@ -46,14 +46,14 @@ $defaultMargin: 8px;
 }
 
 .menuContainer {
-  background: #aa0;
+  background: var(--dark3);
   width: 100%;
   height: $menuHeight;
   flex-basis: 100%;
 }
 
 .routeContainer {
-  background: #666;
+  background: var(--dark5);
   width: 100%;
   height: calc(100% - $menuHeight);
   flex-basis: 100%;
