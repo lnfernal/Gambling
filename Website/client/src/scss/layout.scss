@@ -1,0 +1,103 @@
+$chatWidth: 310px;
+$gamesMenuHeight: 90px;
+$menuHeight: 40px;
+$defaultMargin: 8px;
+
+.mainContainer, .logoContainer, .gamesMenuContainer, .chatContainer {
+  display: inline-flex;
+}
+
+.logoContainer {
+  width: $chatWidth;
+  height: $gamesMenuHeight;
+  background: #a00;
+  align-items: center;
+  justify-content: center;
+  flex-basis: $chatWidth;
+}
+
+.gamesMenuContainer {
+  background: #00a;
+  width: calc(100% - $chatWidth);
+  height: $gamesMenuHeight;
+  flex-basis: calc(100% - $chatWidth);
+}
+
+.chatContainer {
+  background: #a0a;
+  width: $chatWidth;
+  height: calc(100% - $gamesMenuHeight);
+  flex-basis: $chatWidth;
+}
+.showChatButton {
+  width: 32px;
+  height: 32px;
+  background: yellow;
+  position: absolute;
+  top: calc($gamesMenuHeight * 2 + $menuHeight + $defaultMargin);
+  left: $defaultMargin;
+  display: none;
+}
+
+.mainContainer {
+  width: calc(100% - $chatWidth);
+  height: calc(100% - $gamesMenuHeight);
+  flex-wrap: wrap;
+}
+
+.menuContainer {
+  background: #aa0;
+  width: 100%;
+  height: $menuHeight;
+  flex-basis: 100%;
+}
+
+.routeContainer {
+  background: #666;
+  width: 100%;
+  height: calc(100% - $menuHeight);
+  flex-basis: 100%;
+}
+
+@media only screen and (max-width: 900px) {
+  .logoContainer {
+    width: 100%;
+    height: $gamesMenuHeight;
+    flex-basis: 100%;
+  }
+  
+  .gamesMenuContainer {
+    width: 100%;
+    height: $gamesMenuHeight;
+    flex-basis: 100%;
+  }
+  
+  .chatContainer {
+    width: 100%;
+    height: calc(100% - $gamesMenuHeight * 2 - $menuHeight);
+    flex-basis: 100%;
+    position: absolute;
+    top: calc($gamesMenuHeight * 2 + $menuHeight);
+    display: none;
+  }
+  .showChatButton {
+    display: inline-block;
+  }
+  
+  .mainContainer {
+    width: 100%;
+    height: calc(100% - $gamesMenuHeight * 2);
+  }
+  
+  .menuContainer {
+    width: 100%;
+    height: $menuHeight;
+    flex-basis: 100%;
+  }
+  
+  .routeContainer {
+    width: 100%;
+    height: calc(100% - $menuHeight);
+    flex-basis: 100%;
+  }
+}

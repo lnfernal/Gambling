@@ -1,3 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100;400;800&display=swap');
+
+* {
+  color: #eee;
+  font-family: 'Sora', sans-serif;
+}
+
+:root {
+  --defaultColor: #fff;
+}
+
+#app {
+  &.blue {
+    --defaultColor: #14e;
+  }
+  &.red {
+    --defaultColor: #e12;
+  }
+
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+}
+
 body {
   background-color: #111118;
+  margin: 0;
+}
+
+nav {
+  padding: 30px;
+
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
 }

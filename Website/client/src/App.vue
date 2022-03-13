@@ -1,36 +1,33 @@
 <template>
-  <div id="app">
-    <nav>
+  <div id="app" class="blue">
+
+    <div :class="$style.logoContainer">
+      <Logo />
+    </div>
+
+    <div :class="$style.gamesMenuContainer">
+      <GamesMenu />
+    </div>
+
+    <div :class="$style.chatContainer" ref="chatContainer">
+      <Chat />
+    </div>
+    <button :class="$style.showChatButton" @click="showChat()" >C</button>
+
+    <div :class="$style.mainContainer">
+      <div :class="$style.menuContainer"></div>
+      <div :class="$style.routeContainer"></div>
+    </div>
+
+    <!-- <nav>
       <router-link to="/roulette">Roulette</router-link> |
       <router-link to="/faq">FaQ</router-link>
     </nav>
-    <router-view/>
+    <router-view/ -->
   </div>
 </template>
 
 <style lang="scss" src="./scss/main.scss"></style>
+<style module lang="scss" src="./scss/layout.scss"></style>
 
 <script src="./js/main.js"></script>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
