@@ -1,0 +1,17 @@
+nav {
+  height: 100%;
+  width: fit-content;
+  display: inline-flex;
+  a {
+    height: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 5%;
+    padding-right: 5%;
+    flex-direction: row;
+    img {
+      height: 80%;
+    }
+  }
+}

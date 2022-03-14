@@ -3,11 +3,12 @@ export default {
     return {
       isLoggedIn: undefined,
       userData: undefined,
-      logoutUrl: `${this.$config.api}/logout`,
+      money: 0,
     };
   },
   async mounted() {
     this.userData = await this.$api('user');
+    this.money = (await this.$api(`${this.userData.steamid}/balance`)).balance;
     if (this.userData.steamid) {
       this.isLoggedIn = true;
     } else {

@@ -17,18 +17,25 @@
   --defaultMargin: 8px;
 }
 
-#app {
-  &.blue {
-    --defaultColor: #14e;
-  }
-  &.red {
-    --defaultColor: #e12;
-  }
+.red {
+  --defaultColor: #c0392b;
+  --defaultHoverColor: #a0241c;
+}
+.green {
+  --defaultColor: #5a903c;
+  --defaultHoverColor: #28701c;
+}
+.blue {
+  --defaultColor: #0984e3;
+  --defaultHoverColor: #0664b3;
+}
 
+#app {
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-wrap: wrap;
+  font-size: 16px;
 }
 
 body {
@@ -36,15 +43,40 @@ body {
   margin: 0;
 }
 
-nav {
-  padding: 30px;
+.defaultButton {
+  cursor: pointer;
+  background-color: var(--defaultColor);
+  border: 0;
+  //border-radius: 4px;
+  //box-shadow: 4px 4px 0px var(--defaultHoverColor);
+  //transition: 0.04s box-shadow, 0.04s margin;
+  transition: 0.1s transform;
+  display: inline-block;
+  box-shadow: 0 0 12px var(--defaultHoverColor), 0 0 12px var(--defaultHoverColor);
+  transform: skewX(-20deg);
+  span {
+    transition: 0.1s transform;
+    display: block;
+    transform: skewX(20deg);
+  }
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+  &:hover {
+    transform: skewX(0deg);
+    span {
+      transform: skewX(0deg);
     }
+  }
+  &.small {
+    font-size: 0.7em;
+    padding: 6px 9px 6px 9px;
+  }
+  &.medium {
+    font-size: 1.2em;
+    padding: 8px 12px 8px 12px;
+  }
+  &.big {
+    font-size: 1.3em;
+    padding: 12px 24px 12px 24px;
+    font-weight: 600;
   }
 }

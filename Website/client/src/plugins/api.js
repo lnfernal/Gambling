@@ -6,7 +6,6 @@ const API = {
     app.prototype.$api = async (query, method = 'get', isLocal = true) => {
       try {
         const response = await axios[method](isLocal ? `${app.prototype.$config.api}/${query}` : query, { withCredentials: true });
-        console.log(`${app.prototype.$config.api}/${query}`);
         return response.data;
       } catch (e) {
         console.log(e);

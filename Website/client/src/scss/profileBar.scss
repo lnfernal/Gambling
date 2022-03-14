@@ -1,0 +1,23 @@
+.profileBar {
+  height: 100%;
+
+  .profileBarSignInBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    a {
+      width: 80%;
+      button {
+        width: 100%;
+      }
+    }
+  }
+
+  .profileBarUser {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
