@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="blue">
+  <div id="app" class="green">
 
     <div :class="$style.logoContainer">
       <Logo />
@@ -19,15 +19,19 @@
     <button :class="$style.showChatButton" @click="showChat()" >C</button>
 
     <div :class="$style.mainContainer">
-      <div :class="$style.menuContainer"></div>
-      <div :class="$style.routeContainer"></div>
+      <div :class="$style.menuContainer">
+        <Menu />
+      </div>
+      <div :class="$style.routeContainer">
+        <router-view />
+      </div>
     </div>
 
     <!-- <nav>
       <router-link to="/roulette">Roulette</router-link> |
       <router-link to="/faq">FaQ</router-link>
     </nav>
-    <router-view/ -->
+    <router-view /> -->
   </div>
 </template>
 

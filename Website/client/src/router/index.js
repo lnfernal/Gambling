@@ -6,7 +6,7 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
+    path: '/roulette',
     name: 'Roulette',
     component: Roulette,
   },
@@ -26,10 +26,11 @@ const router = new VueRouter({
   routes,
 });
 
-router.beforeEach((to) => {
+router.beforeEach((to, from, next) => {
   Vue.nextTick(() => {
     document.title = `${Vue.prototype.$config.name} - ${to.name}`;
   });
+  next();
 });
 
 export default router;

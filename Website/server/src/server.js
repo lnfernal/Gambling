@@ -7,13 +7,21 @@ import subdomain from 'express-subdomain';
 import expressSession from 'express-session';
 import sharedSession from 'express-socket.io-session';
 import cors from 'cors';
+import SQLiteStore from 'connect-sqlite3';
 
 const app = express();
 
 const api = express.Router();
 app.use(subdomain('api', api));
 
-const session = expressSession({ resave: false, saveUninitialized: false, secret: config.secret });
+const sessionStore = SQLiteStore(expressSession);
+const session = expressSession({
+  resave: true,
+  saveUninitialized: true,
+  secret: config.secret,
+  store: new sessionStore,
+  cookie: { maxAge: 30 * 24 * 60 * 60000, secure: true },
+});
 app.use(session);
 app.use(cors({
   origin: `https://${config.siteDomain}:${config.sitePort}`,
