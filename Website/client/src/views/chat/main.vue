@@ -2,26 +2,14 @@
   <div :class="$style.chat">
     <div :class="$style.messages">
       <Message
-        username="Pevo"
-        :level="3"
-        :rank="0"
-        avatar="https://avatars.akamai.steamstatic.com/0f966eafceea95ff7601fb8eee2845610462fc4d.jpg"
-        content="Elo hej cześć"
-      />
-      <Message
-        username="Pevo"
-        :level="3"
-        :rank="0"
-        avatar="https://avatars.akamai.steamstatic.com/0f966eafceea95ff7601fb8eee2845610462fc4d.jpg"
-        content="Elo hej cześć. Tu znajduje się bardzo długa wiadomość,
-        której nie jesteś w stanie przeczytać"
-      />
-      <Message
-        username="Pevo"
-        :level="3"
-        :rank="0"
-        avatar="https://avatars.akamai.steamstatic.com/0f966eafceea95ff7601fb8eee2845610462fc4d.jpg"
-        content="Elo hej cześć"
+        @wheel.native="scroll"
+        @newChatMessage="updateScroll" v-for="(msg) of messagesToRender" :key="msg.lastMessageID"
+        :username="msg.username"
+        :level="msg.level"
+        :rank="msg.rank"
+        :avatar="msg.avatar"
+        :content="msg.content"
+        :date="msg.date"
       />
     </div>
     <div :class="$style.inputs" v-if="$store.state.isLoggedIn === true">
@@ -33,7 +21,7 @@
       <a :href="`${$config.api}/auth`">
         <button class="defaultButton small"><span><i class="fa fa-steam"></i>Sign in</span></button>
       </a>
-       to send message
+       to join chat
     </div>
     <div :class="$style.inputs" v-else></div>
   </div>
