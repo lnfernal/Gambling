@@ -1,6 +1,9 @@
 <template>
   <div class="menu">
     <div class="leftMenu">
+      <button class="showChatButton" @click="showChat" >
+        <i class="fas fa-comment-slash" ref="showChatButtonI"></i>
+      </button>
       <nav>
         <router-link to="/free">
           <span><i class="fas fa-coins"></i> Free coins</span>
@@ -25,3 +28,22 @@
 </template>
 
 <style scoped lang="scss" src="../../scss/menu.scss"></style>
+
+<script>
+import EventBus from '../../plugins/EventBus';
+
+export default {
+  mounted() {
+    EventBus.$on('onChatStateChange', (e) => {
+      this.$refs.showChatButtonI.classList = e === 'none'
+        ? 'fas fa-angle-double-right'
+        : 'fas fa-angle-double-left';
+    });
+  },
+  methods: {
+    showChat() {
+      EventBus.$emit('showChat');
+    },
+  },
+};
+</script>

@@ -37,20 +37,12 @@ $profileBarWidth: 310px;
   flex-basis: $chatWidth;
   flex-flow: column;
 }
-.showChatButton {
-  width: 32px;
-  height: 32px;
-  background: yellow;
-  position: absolute;
-  top: calc($gamesMenuHeight * 3 + $menuHeight + $defaultMargin);
-  left: $defaultMargin;
-  display: none;
-}
 
 .mainContainer {
   width: calc(100% - $chatWidth);
   height: calc(100% - $gamesMenuHeight);
   flex-wrap: wrap;
+  flex: 1;
 }
 
 .menuContainer {
@@ -96,6 +88,7 @@ $profileBarWidth: 310px;
   }
   .showChatButton {
     display: inline-block;
+    top: calc($gamesMenuHeight * 3 + $menuHeight + $defaultMargin);
   }
   
   .mainContainer {

@@ -38,6 +38,23 @@
       }
     }
   }
+  .leftMenu {
+    display: flex;
+    .showChatButton {
+      width: 40px;
+      height: 40px;
+      display: inline-block;
+      border: 0;
+      background-color: var(--dark6);
+      font-size: 20px;
+      cursor: pointer;
+      transition: 0.1s background-color 0.1s box-shadow;
+      &:hover {
+        background-color: var(--defaultColor);
+        box-shadow: 0 0 8px var(--defaultColor);
+      }
+    }
+  }
   .leftMenu > nav {
     height: 100%;
     align-items: center;

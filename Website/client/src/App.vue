@@ -15,11 +15,10 @@
 
     <div :class="$style.chatContainer" ref="chatContainer">
       <InfoBar />
-      <Chat />
+      <Chat @showChat="showChat"/>
     </div>
-    <button :class="$style.showChatButton" @click="showChat()" >C</button>
 
-    <div :class="$style.mainContainer">
+    <div :class="$style.mainContainer" ref="mainContainer">
       <div :class="$style.menuContainer">
         <Menu />
       </div>

@@ -5,6 +5,7 @@ import InfoBar from '../views/infoBar/main.vue';
 import Chat from '../views/chat/main.vue';
 import Menu from '../views/menu/main.vue';
 import Footer from '../views/footer/main.vue';
+import EventBus from '../plugins/EventBus';
 
 export default {
   components: {
@@ -25,13 +26,16 @@ export default {
 
   mounted() {
     document.title = `${this.$config.name}`;
+    this.$refs.chatContainer.style.display = 'inline-block';
     this.$script('fa.js');
   },
 
   methods: {
     showChat() {
-      this.chatState = !this.chatState;
-      this.$refs.chatContainer.style.display = this.chatState ? 'inline-flex' : 'none';
+      // this.chatState = !this.chatState;
+      this.$refs.chatContainer.style.display = this.$refs.chatContainer.style.display !== 'none'
+        ? 'none' : 'inline-flex';
+      EventBus.$emit('onChatStateChange', this.$refs.chatContainer.style.display);
     },
   },
 };

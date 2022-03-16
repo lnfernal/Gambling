@@ -1,4 +1,5 @@
 import Message from '../views/chat/message.vue';
+import EventBus from '../plugins/EventBus';
 
 export default {
   components: {
@@ -36,8 +37,12 @@ export default {
       this.lastHeight = scrollHeight;
       this.lastScrollHeight = totalHeight;
     },
+    showChat() {
+      this.$emit('showChat');
+    },
   },
   mounted() {
+    EventBus.$on('showChat', this.showChat);
     setInterval(() => {
       this.createMessage({
         username: 'Pevo',
