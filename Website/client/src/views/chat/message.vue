@@ -23,6 +23,11 @@
       <div :class='$style.hour'>
         {{ makeHour(date) }}
       </div>
+      <div :class='$style.settings'>
+        <button class="defaultButton small">
+          <span><i class="fas fa-ellipsis-h"></i></span>
+        </button>
+      </div>
     </div>
   </div>
 </template>
