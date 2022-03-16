@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.message">
-    <div :class="$style.avatar">
+    <div :class="$style.avatar" :style="`background-color:${rankData.rankColor}`">
       <img :src="avatar" alt="avatar" />
     </div>
     <div :class="$style.content">
