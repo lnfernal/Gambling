@@ -32,10 +32,10 @@ $profileBarWidth: 310px;
 }
 
 .chatContainer {
-  background: var(--dark4);
   width: $chatWidth;
   height: calc(100% - $gamesMenuHeight);
   flex-basis: $chatWidth;
+  flex-flow: column;
 }
 .showChatButton {
   width: 32px;
@@ -61,7 +61,6 @@ $profileBarWidth: 310px;
 }
 
 .routeContainer {
-  background: var(--dark5);
   width: 100%;
   height: calc(100% - $menuHeight);
   flex-basis: 100%;

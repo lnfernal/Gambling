@@ -8,11 +8,13 @@ export default {
   },
   async mounted() {
     this.userData = await this.$api('user');
-    this.money = (await this.$api(`${this.userData.steamid}/balance`)).balance;
     if (this.userData.steamid) {
       this.isLoggedIn = true;
+      this.money = (await this.$api(`${this.userData.steamid}/balance`)).balance;
+      this.$store.state.isLoggedIn = true;
     } else {
       this.isLoggedIn = false;
+      this.$store.state.isLoggedIn = false;
     }
   },
 };

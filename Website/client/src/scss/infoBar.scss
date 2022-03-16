@@ -1,0 +1,9 @@
+$menuHeight: 40px;
+
+.infoBar {
+  width: 100%;
+  height: $menuHeight;
+  background-color: var(--dark3);
+  box-sizing: border-box;
+  border-right: 1px solid var(--dark5);
+}

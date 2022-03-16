@@ -24,6 +24,30 @@ api.use(steamLogin.middleware({
     apiKey: config.ApiKey}
 ));
 
+const createGet = async (req, res, value, returnValue) => {
+  returnValue = typeof returnValue !== 'undefined' ? returnValue : value;
+  if (!req.user) {
+    throwError(res, 0);
+    return;
+  }
+  const requestingUser = new User(req.user.steamid);
+  if (String(req.params.user) === String(req.user.steamid)) {
+    res.json({
+      success: true,
+      [returnValue]: await requestingUser.get(value),
+    });
+  } else if (await requestingUser.getPermission(`${value}.*`)) {
+    const targetUser = new User(req.params.user);
+    res.json({
+      success: true,
+      [returnValue]: await targetUser.get(value),
+    });
+  } else {
+    throwError(res, 1);
+    return;
+  }
+}
+
 api.get('/api/v1/auth', steamLogin.authenticate(), function(req, res) {
   res.redirect('/');
 });
@@ -55,28 +79,8 @@ api.get('/api/v1/user', (req, res) => {
   }
 });
 
-api.get('/api/v1/:user/balance', async (req, res) => {
-  if (!req.user) {
-    throwError(res, 0);
-    return;
-  }
-  const requestingUser = new User(req.user.steamid);
-  if (String(req.params.user) === String(req.user.steamid)) {
-    res.json({
-      success: true,
-      balance: await requestingUser.get('money'),
-    });
-  } else if (await requestingUser.getPermission('balance.*')) {
-    const targetUser = new User(req.params.user);
-    res.json({
-      success: true,
-      balance: await targetUser.get('money'),
-    });
-  } else {
-    throwError(res, 1);
-    return;
-  }
-});
+api.get('/api/v1/:user/exp', async (req, res) => await createGet(req, res, 'exp'));
+api.get('/api/v1/:user/balance', async (req, res) => await createGet(req, res, 'money', 'balance'));
 
 export default {
 

@@ -14,6 +14,7 @@
     </div>
 
     <div :class="$style.chatContainer" ref="chatContainer">
+      <InfoBar />
       <Chat />
     </div>
     <button :class="$style.showChatButton" @click="showChat()" >C</button>

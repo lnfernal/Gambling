@@ -8,11 +8,11 @@
 :root {
   --defaultColor: #fff;
 
-  --dark1: #080808;
-  --dark2: #161616;
-  --dark3: #202020;
-  --dark4: #282828;
-  --dark5: #323232;
+  --dark1: #08080888;
+  --dark2: #16161688;
+  --dark3: #20202088;
+  --dark4: #28282888;
+  --dark5: #32323288;
 
   --defaultMargin: 8px;
 }
@@ -39,8 +39,12 @@
 }
 
 body {
-  background-color: #111118;
+  background-color: #1d1e1e;
+  background-image: url(../assets/background.jpg);
   margin: 0;
+  background-position: 50%;
+  background-size: auto 125%;
+  background-repeat: no-repeat;
 }
 
 .defaultButton {

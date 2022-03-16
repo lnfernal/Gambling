@@ -6,6 +6,10 @@ Vue.use(VueRouter);
 
 const routes = [
   {
+    path: '/',
+    redirect: '/roulette',
+  },
+  {
     path: '/roulette',
     name: 'Roulette',
     component: Roulette,
