@@ -43,15 +43,18 @@ export default {
   },
   mounted() {
     EventBus.$on('showChat', this.showChat);
-    setInterval(() => {
+    for (let i = 0; i < 12; i += 1) {
       this.createMessage({
         username: 'Pevo',
         level: Math.floor(Math.random() * 100),
         rank: Math.random() > 0.5 ? 100 : 0,
         avatar: 'https://avatars.akamai.steamstatic.com/0f966eafceea95ff7601fb8eee2845610462fc4d.jpg',
-        content: String(new Date()),
+        content: '@Pevo oraz @AdamMałysz, Co tam? Zapraszam na https://google.com polecam',
         date: 1647432920146 / Math.random(),
       });
+    }
+    setInterval(() => {
+
     }, 400);
   },
 };

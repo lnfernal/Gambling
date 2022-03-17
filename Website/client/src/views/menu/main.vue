@@ -2,7 +2,7 @@
   <div class="menu">
     <div class="leftMenu">
       <button class="showChatButton" @click="showChat" >
-        <i class="fas fa-comment-slash" ref="showChatButtonI"></i>
+        <i class="fas fa-angle-double-left" ref="showChatButtonI"></i>
       </button>
       <nav>
         <router-link to="/free">

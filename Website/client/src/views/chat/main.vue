@@ -12,6 +12,7 @@
         :date="msg.date"
       />
     </div>
+    <div :class="$style.line"></div>
     <div :class="$style.inputs" v-if="$store.state.isLoggedIn === true">
       <input type="text" placeholder="Type here..." v-model="inputValue" aria-label="message" />
       <button :class="$style.showEmotesButton"><i class="fas fa-flushed"></i></button>

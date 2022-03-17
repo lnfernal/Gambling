@@ -17,23 +17,30 @@
         </span>
       </div>
       <div :class="$style.contentText"
-      :style="`color:${rankData.contentColor}`">
-        {{ content }}
+      :style="`color:${rankData.contentColor}`" v-html="convertContent(content)">
       </div>
       <div :class='$style.hour'>
         {{ makeHour(date) }}
       </div>
       <div :class='$style.settings'>
-        <button class="defaultButton small">
+        <button class="defaultButton small"
+        @click="ContextMenuState = true">
           <span><i class="fas fa-ellipsis-h"></i></span>
         </button>
       </div>
+      <ContextMenu ref="ContextMenu" :class="$style.contextMenu"
+      :data="data" :state="ContextMenuState" />
     </div>
   </div>
 </template>
 
 <script>
+import ContextMenu from '../../components/ContextMenu.vue';
+
 export default {
+  components: {
+    ContextMenu,
+  },
   props: {
     username: {
       type: String,
@@ -59,6 +66,10 @@ export default {
       type: Number,
       default: 0,
     },
+    steamid: {
+      type: String,
+      default: '?',
+    },
   },
   watch: {
     rank() {
@@ -70,6 +81,12 @@ export default {
   data() {
     return {
       rankData: undefined,
+      ContextMenuState: false,
+      data: [
+        { name: 'Test 1', func: () => console.log('Test 1') },
+        { name: 'Test 2', func: () => console.log('Test 2') },
+        { name: 'Adam Małysz', func: () => console.log('Test 3') },
+      ],
     };
   },
   mounted() {
@@ -80,11 +97,6 @@ export default {
       ? this.$store.state.ranks[this.rank]
       : this.$store.state.ranks[0];
   },
-  unmounted() {
-    console.log(123);
-    this.rankData = undefined;
-  },
-
   methods: {
     makeHour(timestamp) {
       const date = new Date(timestamp);
@@ -92,8 +104,28 @@ export default {
       const minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes();
       return `${hours}:${minutes}`;
     },
+    convertContent(content) {
+      const newContent = content
+        .replace(/@[^\s^,^@]+/g, '<span class="chatPing">$&</span>')
+        .replace(/(https|http):\/\/[^\s]+/g, '<a href="$&" class="chatUrl" target="_blank">$&</a>');
+      return newContent;
+    },
   },
 };
 </script>
 
 <style module lang="scss" src="../../scss/chat.scss"></style>
+
+<style lang="scss">
+  .chatPing {
+    background-color: var(--defaultColor);
+    padding: 2px 4px 2px 4px;
+    border-radius: 4px;
+    font-weight: bold;
+    box-shadow: 0 0 8px var(--defaultColor);
+  }
+  .chatUrl {
+    text-decoration: none;
+    color: #2aF;
+  }
+</style>
