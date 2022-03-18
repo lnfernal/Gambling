@@ -3,7 +3,7 @@ import { query } from './database';
 const defaultPermissions = [
   'balance.self',
   'bet.roulette',
-  'chat.message',
+  'chat.send',
   'chat.emote',
   'deposit',
   'withdraw',
@@ -47,12 +47,18 @@ export default class User {
       let valuesToSelect = `\`${values[0]}\``;
       for (let i in values) {
         if (i > 0) {
-          valuesToSelect += `,${values[i]}`;
+          valuesToSelect += `,\`${values[i]}\``;
         }
       }
-      const result = await query(`SELECT ${valuesToSelect} FROM \`users\` WHERE \`steamid\`=?`, [values, this.steamid]);
+      const result = await query(`SELECT ${valuesToSelect} FROM \`users\` WHERE \`steamid\`=?`, [this.steamid]);
       return (result && result[0]) ? result[0] : false;
     }
+  }
+  makeLevel(exp) {
+    return 10;
+  }
+  async getLevel() {
+    return 10;
   }
   async getPermission(permission) {
     if (await this.isExists()) {
@@ -67,6 +73,9 @@ export default class User {
     } else {
       return false;
     }
+  }
+  makeAvatar(avatarString, size = 2) {
+    return `https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/${avatarString}${size == 1 ? '' : size == 2 ? '_medium' : '_full'}.jpg`;
   }
   async getAvatar(size = 2) {
     const avatarString = await this.get('avatar');

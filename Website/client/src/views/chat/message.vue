@@ -24,12 +24,12 @@
       </div>
       <div :class='$style.settings'>
         <button class="defaultButton small"
-        @click="ContextMenuState = true">
+        @click="$refs.ContextMenu.show()">
           <span><i class="fas fa-ellipsis-h"></i></span>
         </button>
       </div>
       <ContextMenu ref="ContextMenu" :class="$style.contextMenu"
-      :data="data" :state="ContextMenuState" />
+      :data="data" />
     </div>
   </div>
 </template>
@@ -68,7 +68,7 @@ export default {
     },
     steamid: {
       type: String,
-      default: '?',
+      default: '0',
     },
   },
   watch: {
@@ -83,9 +83,7 @@ export default {
       rankData: undefined,
       ContextMenuState: false,
       data: [
-        { name: 'Test 1', func: () => console.log('Test 1') },
-        { name: 'Test 2', func: () => console.log('Test 2') },
-        { name: 'Adam Małysz', func: () => console.log('Test 3') },
+        { name: 'Profile', func: this.goToProfile },
       ],
     };
   },
@@ -98,6 +96,10 @@ export default {
       : this.$store.state.ranks[0];
   },
   methods: {
+    goToProfile() {
+      console.log(this.steamid);
+      this.$router.history.replace(`/profile/${this.steamid}`);
+    },
     makeHour(timestamp) {
       const date = new Date(timestamp);
       const hours = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours();
@@ -118,11 +120,11 @@ export default {
 
 <style lang="scss">
   .chatPing {
-    background-color: var(--defaultColor);
+    background-color: var(--dark5NA);
     padding: 2px 4px 2px 4px;
     border-radius: 4px;
     font-weight: bold;
-    box-shadow: 0 0 8px var(--defaultColor);
+    box-shadow: 0 0 8px var(--dark1);
   }
   .chatUrl {
     text-decoration: none;

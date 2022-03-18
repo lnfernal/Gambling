@@ -40,19 +40,27 @@ export default {
     showChat() {
       this.$emit('showChat');
     },
+    sendMessage() {
+      if (this.inputValue.length < 1) return;
+      this.$socket.emit('chatMessage', this.inputValue);
+      this.inputValue = '';
+    },
   },
   mounted() {
     EventBus.$on('showChat', this.showChat);
-    for (let i = 0; i < 12; i += 1) {
-      this.createMessage({
-        username: 'Pevo',
-        level: Math.floor(Math.random() * 100),
-        rank: Math.random() > 0.5 ? 100 : 0,
-        avatar: 'https://avatars.akamai.steamstatic.com/0f966eafceea95ff7601fb8eee2845610462fc4d.jpg',
-        content: '@Pevo oraz @AdamMałysz, Co tam? Zapraszam na https://google.com polecam',
-        date: 1647432920146 / Math.random(),
-      });
-    }
+    this.$socket.on('chatMessage', (data) => {
+      this.createMessage(data);
+    });
+    // for (let i = 0; i < 12; i += 1) {
+    //   this.createMessage({
+    //     username: 'Pevo',
+    //     level: Math.floor(Math.random() * 100),
+    //     rank: Math.random() > 0.5 ? 100 : 0,
+    //     avatar: 'https://avatars.akamai.steamstatic.com/0f966eafceea95ff7601fb8eee2845610462fc4d.jpg',
+    //     content: '@Pevo oraz @AdamMałysz, Co tam? Zapraszam na https://google.com polecam',
+    //     date: 1647432920146 / Math.random(),
+    //   });
+    // }
     setInterval(() => {
 
     }, 400);

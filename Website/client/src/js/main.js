@@ -27,7 +27,7 @@ export default {
   mounted() {
     document.title = `${this.$config.name}`;
     this.$refs.chatContainer.style.display = 'inline-block';
-    this.$script('fa.js');
+    this.$script('/fa.js');
   },
 
   methods: {

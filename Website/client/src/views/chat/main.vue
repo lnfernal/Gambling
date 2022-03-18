@@ -10,11 +10,18 @@
         :avatar="msg.avatar"
         :content="msg.content"
         :date="msg.date"
+        :steamid="msg.steamid"
       />
     </div>
     <div :class="$style.line"></div>
     <div :class="$style.inputs" v-if="$store.state.isLoggedIn === true">
-      <input type="text" placeholder="Type here..." v-model="inputValue" aria-label="message" />
+      <input
+        type="text"
+        placeholder="Type here..."
+        v-model="inputValue"
+        aria-label="message"
+        @keyup.enter="sendMessage"
+      />
       <button :class="$style.showEmotesButton"><i class="fas fa-flushed"></i></button>
     </div>
     <div :class="`${$style.inputs} ${$style.notLoggedIn}`"

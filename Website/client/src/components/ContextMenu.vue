@@ -1,8 +1,10 @@
 <template>
-  <div v-if="state" :class="$style.contextMenu">
-    <span @keydown="click(el.func)" :class="$style.label" v-for="(el, i) of data" :key="i"
-    @click="click(el)">{{ el.name }}</span>
-  </div>
+  <transition name="fade">
+    <div v-if="state" :class="$style.contextMenu">
+      <span @keydown="click(el.func)" :class="$style.label" v-for="(el, i) of data" :key="i"
+      @click="click(el)">{{ el.name }}</span>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -12,12 +14,25 @@ export default {
       type: Array,
       default: () => [],
     },
-    state: {
-      type: Boolean,
-      default: true,
-    },
+  },
+  data() {
+    return {
+      state: false,
+    };
+  },
+  mounted() {
+    document.addEventListener('mouseup', this.clickHandler);
+  },
+  beforeDestroy() {
+    document.removeEventListener('mouseup', this.clickHandler);
   },
   methods: {
+    clickHandler() {
+      this.state = false;
+    },
+    show() {
+      this.state = true;
+    },
     click(el) {
       el.func(el.args);
     },
@@ -52,4 +67,15 @@ export default {
       }
     }
   }
+</style>
+
+<style scoped lang="scss">
+
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+  }
+
 </style>

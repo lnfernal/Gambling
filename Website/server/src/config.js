@@ -7,6 +7,11 @@ config.sitePort = '8001';
 config.domain = '192.168.0.101';
 config.apiDomain = '192.168.0.101:3000/api';
 config.port = 3000;
+
+config.chat = {
+  maxMessages: 32,
+};
+
 config.secret = '235u389J$I3r92j3902D2394$($sdf';
 
 config.MySQL = {
