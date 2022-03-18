@@ -22,6 +22,30 @@ const ranks = {
       ...defaultPermissions,
     ],
   },
+  96: {
+    name: 'YouTube',
+    permissions: [
+      ...defaultPermissions,
+    ],
+  },
+  97: {
+    name: 'Support',
+    permissions: [
+      ...defaultPermissions,
+    ],
+  },
+  98: {
+    name: 'Mod',
+    permissions: [
+      ...defaultPermissions,
+    ],
+  },
+  99: {
+    name: 'Admin',
+    permissions: [
+      '*'
+    ],
+  },
   100: {
     name: 'Owner',
     permissions: [

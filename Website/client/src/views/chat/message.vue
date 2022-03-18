@@ -73,9 +73,13 @@ export default {
   },
   watch: {
     rank() {
-      this.rankData = typeof this.$store.state.ranks[this.rank] !== 'undefined'
-        ? this.$store.state.ranks[this.rank]
-        : this.$store.state.ranks[0];
+      if (typeof this.$store.state.ranks[this.rank] !== 'undefined') {
+        this.rankData = this.$store.state.ranks[this.rank]
+          ? this.$store.state.ranks[this.rank]
+          : this.$store.state.ranks[0];
+      } else {
+        this.rankData = { ...this.$store.state.ranks[0] };
+      }
     },
   },
   data() {
@@ -91,9 +95,13 @@ export default {
     this.$emit('newChatMessage');
   },
   created() {
-    this.rankData = typeof this.$store.state.ranks[this.rank] !== 'undefined'
-      ? this.$store.state.ranks[this.rank]
-      : this.$store.state.ranks[0];
+    if (typeof this.$store.state.ranks[this.rank] !== 'undefined') {
+      this.rankData = this.$store.state.ranks[this.rank]
+        ? this.$store.state.ranks[this.rank]
+        : this.$store.state.ranks[0];
+    } else {
+      this.rankData = { ...this.$store.state.ranks[0] };
+    }
   },
   methods: {
     goToProfile() {
