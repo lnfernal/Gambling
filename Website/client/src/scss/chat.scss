@@ -89,6 +89,9 @@ $usernameRadius: 4px;
           margin-bottom: 3px;
           margin-top: -2px;
           font-weight: 600;
+          .username {
+            cursor: pointer;
+          }
           .rank, .username {
             font-size: 12px;
             padding: 2px 5px 2px 5px;

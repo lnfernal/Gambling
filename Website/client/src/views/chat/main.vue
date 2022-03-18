@@ -4,6 +4,7 @@
       <Message
         @wheel.native="scroll"
         @newChatMessage="updateScroll" v-for="(msg) of messagesToRender" :key="msg.lastMessageID"
+        @putNameInInput="putNameInInput($event)"
         :username="msg.username"
         :level="msg.level"
         :rank="msg.rank"
@@ -21,6 +22,7 @@
         v-model="inputValue"
         aria-label="message"
         @keyup.enter="sendMessage"
+        ref="chatInput"
       />
       <button :class="$style.showEmotesButton"><i class="fas fa-flushed"></i></button>
     </div>

@@ -12,7 +12,9 @@
         </span>
         <span :class="$style.username"
         :style="`background-color:${rankData.usernameColor}`">
-          <span :style="`color:${rankData.usernameTextColor}`">
+        <!-- eslint-disable-next-line vuejs-accessibility/click-events-have-key-events -->
+          <span :style="`color:${rankData.usernameTextColor}`"
+          @click="putNameInInput()">
           {{ username }}</span>
         </span>
       </div>
@@ -107,6 +109,9 @@ export default {
     goToProfile() {
       console.log(this.steamid);
       this.$router.history.replace(`/profile/${this.steamid}`);
+    },
+    putNameInInput() {
+      this.$emit('putNameInInput', this.username);
     },
     makeHour(timestamp) {
       const date = new Date(timestamp);

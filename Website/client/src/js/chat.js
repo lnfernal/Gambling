@@ -16,6 +16,10 @@ export default {
     };
   },
   methods: {
+    putNameInInput(name) {
+      this.inputValue += `@${name}, `;
+      this.$refs.chatInput.focus();
+    },
     updateScroll() {
       const el = this.$el.querySelector('div');
       if (this.lastHeight === this.lastScrollHeight) el.scrollTop = el.scrollHeight;
