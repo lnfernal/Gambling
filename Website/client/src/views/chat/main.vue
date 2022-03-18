@@ -25,6 +25,11 @@
         ref="chatInput"
       />
       <button :class="$style.showEmotesButton"><i class="fas fa-flushed"></i></button>
+      <div :class="$style.emotesBox">
+        <div :class="$style.emotesBoxContent">
+        </div>
+        <div disabled :class="$style.emotesBoxTriangle"></div>
+      </div>
     </div>
     <div :class="`${$style.inputs} ${$style.notLoggedIn}`"
       v-else-if="$store.state.isLoggedIn === false">

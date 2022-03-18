@@ -1,11 +1,16 @@
 div {
   width: 100%;
   nav {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-left: 20px;
+    padding-right: 10px;
     height: 100%;
     width: 100%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    box-sizing: border-box;
     a {
       height: fit-content;
       display: inline-flex;
@@ -14,13 +19,20 @@ div {
       padding: 16px 20px 16px 20px;
       flex-direction: row;
       text-decoration: none;
-      word-spacing: 4px;
+      word-spacing: 2px;
       display: inline-flex;
       transform: skewX(-20deg);
       font-weight: 600;
       font-size: 1em;
       span {
         transform: skewX(20deg);
+        text-align: center;
+        display: flex;
+        align-items: center;
+        i {
+          font-size: 1.3em;
+          margin-right: 6px;
+        }
       }
       background-color: var(--dark3);
       transition: 0.1s background-color, 0.1s box-shadow;

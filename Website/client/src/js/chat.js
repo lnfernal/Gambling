@@ -5,6 +5,7 @@ export default {
   components: {
     Message,
   },
+
   data() {
     return {
       inputValue: '',
@@ -13,6 +14,33 @@ export default {
       lastHeight: undefined,
       lastScrollHeight: undefined,
       lastMessageID: 0,
+      emotes: {
+        ':sunglasses:': '/assets/emotes/1f60e.png',
+        ':cash:': '/assets/emotes/1f4b5.png',
+        ':clown:': '/assets/emotes/1f921.png',
+        ':wave:': '/assets/emotes/1f590.png',
+        ':eyeheats:': '/assets/emotes/1f60d.png',
+        ':smile:': '/assets/emotes/1f604.png',
+        ':heart:': '/assets/emotes/1f9e1.png',
+        ':cowboy:': '/assets/emotes/1f920.png',
+        ':salivate:': '/assets/emotes/1f924.png',
+        ':pogpepe:': 'https://cdn.discordapp.com/attachments/466648374297493504/796476129816346634/emote.png',
+        ':OMEGALUL:': '/assets/emotes/OMEGALUL.png',
+        ':pepeHands:': '/assets/emotes/pepeHands.png',
+        ':HYPERS:': '/assets/emotes/HYPERS.png',
+        ':peepoHappy:': '/assets/emotes/peepoHappy.png',
+        ':mericCat:': '/assets/emotes/mericCat.png',
+        ':pepeLost:': '/assets/emotes/pepeLost.png',
+        ':widepeepoHappy:': '/assets/emotes/widepeepoHappy.png',
+        ':kkomrade:': '/assets/emotes/kkomrade.png',
+        ':zulul:': '/assets/emotes/zulul.png',
+        ':kkona:': '/assets/emotes/kkona.png',
+        ':hahaa:': '/assets/emotes/haHAA.png',
+        ':ez:': '/assets/emotes/ez.png',
+        ':pepethink:': '/assets/emotes/pepethink.png',
+        ':widehardo:': '/assets/emotes/widehardo.png',
+        ':wesmart:': '/assets/emotes/wesmart.png',
+      },
     };
   },
   methods: {

@@ -66,7 +66,7 @@ $profileBarWidth: 310px;
   }
   
   .gamesMenuContainer {
-    width: 100%;
+    width: calc(100% - 10px);
     height: $gamesMenuHeight;
     flex-basis: 100%;
   }
@@ -83,7 +83,7 @@ $profileBarWidth: 310px;
     height: calc(100% - $gamesMenuHeight * 3 - $menuHeight);
     flex-basis: 100%;
     position: absolute;
-    top: calc($gamesMenuHeight * 3 + $menuHeight);
+    top: calc($gamesMenuHeight * 3 + $menuHeight * 2);
     display: none;
   }
   .showChatButton {
@@ -98,7 +98,7 @@ $profileBarWidth: 310px;
   
   .menuContainer {
     width: 100%;
-    height: $menuHeight;
+    height: $menuHeight * 2;
     flex-basis: 100%;
   }
   
@@ -111,6 +111,7 @@ $profileBarWidth: 310px;
 
 ::-webkit-scrollbar {
   width: 4px;
+  height: 2px;
 }
 
 ::-webkit-scrollbar-track {
