@@ -10,6 +10,7 @@ config.port = 3000;
 
 config.chat = {
   maxMessages: 32,
+  maxChars: 128,
 };
 
 config.secret = '235u389J$I3r92j3902D2394$($sdf';

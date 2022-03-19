@@ -19,5 +19,121 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    .avatarBox {
+      .contextMenu {
+        top: 82px;
+        right: 235px;
+      }
+      width: 89px;
+      height: 64px;
+      padding: 0px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &:hover {
+        cursor: pointer;
+        .avatar, .profileSettings {
+          background-color: var(--dark5NA);
+        }
+      }
+      .avatar {
+        transition: 0.1s background-color;
+        width: 56px;
+        height: 56px;
+        padding: 4px 0 4px 4px;
+        background-color: var(--dark6NA);
+        border-radius: 4px 0 0 4px;
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 4px;
+        } 
+      }
+      .profileSettings {
+        transition: 0.1s background-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--dark6NA);
+        font-size: 14px;
+        height: 100%;
+        width: 22px;
+        border-radius: 0 4px 4px 0;
+        i {
+          color: #eee;
+        }
+      }
+    }
+    .userDataBox {
+      width: 310px;
+      height: 100%;
+      box-sizing: border-box;
+      padding: 12px 12px 12px 12px;
+      display: flex;
+      flex-direction: column;
+
+      .levelContainer {
+        height: 50%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        .expBar {
+          background-color: var(--dark4NA);
+          background-image: linear-gradient(to right, var(--defaultHoverColor), var(--defaultColor));
+          background-repeat: no-repeat;
+          height: 20px;
+          flex: 1;
+          transform: skewX(-20deg);
+          margin: 0 8px 0 8px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          span {
+            color: #eeeb;
+            display: inline-block;
+            transform: skewX(20deg);
+            font-size: 12px;
+          }
+        }
+        .level, .level2 {
+          transform: skewX(-20deg);
+          display: inline-block;
+          background-color: var(--defaultHoverColor);
+          padding: 1px 8px 1px 8px;
+          font-size: 14px;
+          font-weight: bold;
+          span {
+            display: inline-block;
+            transform: skewX(20deg);
+          }
+        }
+        .level2 {
+          background-color: var(--dark4NA);
+        }
+      }
+
+      .moneyContainer {
+        width: 100%;
+        height: 50%;
+        display: flex;
+        align-items: center;
+        font-size: 24px;
+        text-shadow: 0 0 12px #0f0a;
+        font-weight: bold;
+        .money {
+          span {
+            color: #9fa;
+            i {
+              color: #9fa;
+            }
+          }
+        }
+      }
+      .levelContainer {
+        width: 100%;
+        height: 50%;
+      }
+    }
   }
 }
