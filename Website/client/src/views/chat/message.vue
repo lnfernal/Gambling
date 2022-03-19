@@ -72,6 +72,10 @@ export default {
       type: String,
       default: '0',
     },
+    emotes: {
+      type: Object,
+      default: () => ({}),
+    },
   },
   watch: {
     rank() {
@@ -120,9 +124,13 @@ export default {
       return `${hours}:${minutes}`;
     },
     convertContent(content) {
-      const newContent = content
+      let newContent = content
         .replace(/@[^\s^,^@]+/g, '<span class="chatPing">$&</span>')
         .replace(/(https|http):\/\/[^\s]+/g, '<a href="$&" class="chatUrl" target="_blank">$&</a>');
+
+      Object.keys(this.emotes).forEach((key) => {
+        newContent = newContent.replace(key, `<img src="${this.emotes[key]}"alt="emote" title="${key}">`);
+      });
       return newContent;
     },
   },

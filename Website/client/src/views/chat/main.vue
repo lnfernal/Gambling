@@ -12,6 +12,7 @@
         :content="msg.content"
         :date="msg.date"
         :steamid="msg.steamid"
+        :emotes="emotes"
       />
     </div>
     <div :class="$style.line"></div>
@@ -24,12 +25,20 @@
         @keyup.enter="sendMessage"
         ref="chatInput"
       />
-      <button :class="$style.showEmotesButton"><i class="fas fa-flushed"></i></button>
-      <div :class="$style.emotesBox">
-        <div :class="$style.emotesBoxContent">
+      <button @click="emoteBoxState = !emoteBoxState" :class="$style.showEmotesButton">
+        <i class="fas fa-flushed"></i>
+      </button>
+      <transition name="fade">
+        <div :class="$style.emotesBox" v-if="emoteBoxState">
+          <!-- eslint-disable-next-line vuejs-accessibility/click-events-have-key-events -->
+          <img
+          @click="addEmote(i)"
+          :src="emote"
+          v-for="(emote, i) of emotes"
+          :key="i"
+          :alt="`:${emote}:`"/>
         </div>
-        <div disabled :class="$style.emotesBoxTriangle"></div>
-      </div>
+      </transition>
     </div>
     <div :class="`${$style.inputs} ${$style.notLoggedIn}`"
       v-else-if="$store.state.isLoggedIn === false">

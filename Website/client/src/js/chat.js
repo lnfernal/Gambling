@@ -1,6 +1,8 @@
 import Message from '../views/chat/message.vue';
 import EventBus from '../plugins/EventBus';
 
+/* eslint-disable global-require */
+
 export default {
   components: {
     Message,
@@ -14,36 +16,42 @@ export default {
       lastHeight: undefined,
       lastScrollHeight: undefined,
       lastMessageID: 0,
+      emoteBoxState: false,
       emotes: {
-        ':sunglasses:': '/assets/emotes/1f60e.png',
-        ':cash:': '/assets/emotes/1f4b5.png',
-        ':clown:': '/assets/emotes/1f921.png',
-        ':wave:': '/assets/emotes/1f590.png',
-        ':eyeheats:': '/assets/emotes/1f60d.png',
-        ':smile:': '/assets/emotes/1f604.png',
-        ':heart:': '/assets/emotes/1f9e1.png',
-        ':cowboy:': '/assets/emotes/1f920.png',
-        ':salivate:': '/assets/emotes/1f924.png',
+        ':sunglasses:': require('../assets/emotes/1f60e.png'),
+        ':cash:': require('../assets/emotes/1f4b5.png'),
+        ':clown:': require('../assets/emotes/1f921.png'),
+        ':wave:': require('../assets/emotes/1f590.png'),
+        ':eyeheats:': require('../assets/emotes/1f60d.png'),
+        ':smile:': require('../assets/emotes/1f604.png'),
+        ':heart:': require('../assets/emotes/1f9e1.png'),
+        ':cowboy:': require('../assets/emotes/1f920.png'),
+        ':salivate:': require('../assets/emotes/1f924.png'),
         ':pogpepe:': 'https://cdn.discordapp.com/attachments/466648374297493504/796476129816346634/emote.png',
-        ':OMEGALUL:': '/assets/emotes/OMEGALUL.png',
-        ':pepeHands:': '/assets/emotes/pepeHands.png',
-        ':HYPERS:': '/assets/emotes/HYPERS.png',
-        ':peepoHappy:': '/assets/emotes/peepoHappy.png',
-        ':mericCat:': '/assets/emotes/mericCat.png',
-        ':pepeLost:': '/assets/emotes/pepeLost.png',
-        ':widepeepoHappy:': '/assets/emotes/widepeepoHappy.png',
-        ':kkomrade:': '/assets/emotes/kkomrade.png',
-        ':zulul:': '/assets/emotes/zulul.png',
-        ':kkona:': '/assets/emotes/kkona.png',
-        ':hahaa:': '/assets/emotes/haHAA.png',
-        ':ez:': '/assets/emotes/ez.png',
-        ':pepethink:': '/assets/emotes/pepethink.png',
-        ':widehardo:': '/assets/emotes/widehardo.png',
-        ':wesmart:': '/assets/emotes/wesmart.png',
+        ':OMEGALUL:': require('../assets/emotes/OMEGALUL.png'),
+        ':pepeHands:': require('../assets/emotes/pepeHands.png'),
+        ':HYPERS:': require('../assets/emotes/HYPERS.png'),
+        ':peepoHappy:': require('../assets/emotes/peepoHappy.png'),
+        ':mericCat:': require('../assets/emotes/mericCat.png'),
+        ':pepeLost:': require('../assets/emotes/pepeLost.png'),
+        ':widepeepoHappy:': require('../assets/emotes/widepeepoHappy.png'),
+        ':kkomrade:': require('../assets/emotes/kkomrade.png'),
+        ':zulul:': require('../assets/emotes/zulul.png'),
+        ':kkona:': require('../assets/emotes/kkona.png'),
+        ':hahaa:': require('../assets/emotes/haHAA.png'),
+        ':ez:': require('../assets/emotes/ez.png'),
+        ':pepethink:': require('../assets/emotes/pepethink.png'),
+        ':widehardo:': require('../assets/emotes/widehardo.png'),
+        ':wesmart:': require('../assets/emotes/wesmart.png'),
       },
     };
   },
   methods: {
+    addEmote(emote) {
+      this.inputValue += emote;
+      this.emoteBoxState = false;
+      this.$refs.chatInput.focus();
+    },
     putNameInInput(name) {
       this.inputValue += `@${name}, `;
       this.$refs.chatInput.focus();
