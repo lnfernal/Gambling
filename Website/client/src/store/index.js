@@ -4,8 +4,17 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  watch: {
+    money() {
+      console.log(312312);
+    },
+  },
   state: {
     isLoggedIn: undefined,
+    userData: undefined,
+    money: 0,
+    exp: 0,
+    animatedMoney: 0,
     ranks: {
       0: {
         name: 'User',

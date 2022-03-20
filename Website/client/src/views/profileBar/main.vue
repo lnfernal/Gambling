@@ -1,13 +1,13 @@
 <template>
   <div :class="$style.profileBar">
-    <div v-if="isLoggedIn == false" :class="$style.profileBarSignInBox">
+    <div v-if="isLoggedIn === false" :class="$style.profileBarSignInBox">
       <a :href="`${$config.api}/auth`">
         <button class="defaultButton medium green">
           <span><i class="fab fa-steam"></i> Sign in</span>
         </button>
       </a>
     </div>
-    <div v-if="isLoggedIn == true" :class="$style.profileBarUser">
+    <div v-if="isLoggedIn === true" :class="$style.profileBarUser">
       <!-- eslint-disable-next-line vuejs-accessibility/click-events-have-key-events -->
       <div :class="$style.avatarBox" @click="$refs.ContextMenu.show()">
         <div :class="$style.avatar">
@@ -22,23 +22,26 @@
       <div :class="$style.userDataBox">
         <div :class="$style.moneyContainer">
           <span :class="$style.money">
-            <span><i class="fas fa-dollar-sign"></i> {{ $money(animatedMoney) }}</span>
+            <span><i class="fas fa-dollar-sign"></i> {{ $money($store.state.animatedMoney) }}</span>
           </span>
         </div>
         <div :class="$style.levelContainer">
           <div :class="$style.level">
-            <span>12</span>
+            <span>{{ $expToLevel($store.state.exp) }}</span>
           </div>
-          <div :class="$style.expBar" :style="`background-size: 76%`">
-            <span>76%</span>
+          <div :class="$style.expBar"
+          :style="`background-size: ${$getLevelProgress($store.state.exp) * 100}%`">
+            <span>
+              {{ Math.floor($getLevelProgress($store.state.exp) * 100000) / 1000 }}%
+            </span>
           </div>
           <div :class="$style.level2">
-            <span>13</span>
+            <span>{{ $expToLevel($store.state.exp) + 1 }}</span>
           </div>
         </div>
       </div>
     </div>
-    <div v-if="isLoggedIn == undefined">Loading...</div>
+    <div v-if="isLoggedIn === undefined">Loading...</div>
   </div>
 </template>
 

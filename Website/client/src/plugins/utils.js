@@ -32,7 +32,7 @@ export default {
       }
       return count.replace('\.', ',');
     };
-    app.prototype.$animNumber = (object, name, to, ms = 500) => {
+    app.prototype.$animNumber = (object, name, to, ms = 800) => {
       if (object.animNumberInterval) clearInterval(object.animNumberInterval);
       let progress = 0;
       const start = object[name];
@@ -46,6 +46,23 @@ export default {
           object[name] = to;
         }
       }, 10);
+    };
+    app.prototype.$expToLevel = (exp) => {
+      // base / (base + incrementBy)
+      return Math.floor((exp + 1000) / 11000);
+    };
+    app.prototype.$levelToExp = (level) => {
+      // base: 10000; incrementBy: 1000;
+      // a: base + incrementBy
+      // b: -incrementBy
+      return Math.max(0, 11000 * level - 1000);
+    };
+    app.prototype.$getLevelProgress = (exp) => {
+      const EXP = app.prototype.$levelToExp;
+      const LEVEL = app.prototype.$expToLevel;
+      const restExp = exp - EXP(LEVEL(exp));
+      const expToNextLevel = EXP(LEVEL(exp) + 1) - EXP(LEVEL(exp));
+      return Math.floor(restExp / expToNextLevel * 10000) / 10000;
     }
   },
 };

@@ -24,6 +24,12 @@ export default {
     };
   },
 
+  watch: {
+    '$store.state.money': function (v) {
+      this.$animNumber(this.$store.state, 'animatedMoney', v);
+    },
+  },
+
   mounted() {
     document.title = `${this.$config.name}`;
     this.$refs.chatContainer.style.display = 'inline-block';
