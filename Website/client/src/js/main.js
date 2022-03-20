@@ -28,6 +28,9 @@ export default {
     '$store.state.money': function (v) {
       this.$animNumber(this.$store.state, 'animatedMoney', v);
     },
+    '$store.state.exp': function (v) {
+      this.$animNumber(this.$store.state, 'animatedExp', v);
+    },
   },
 
   mounted() {

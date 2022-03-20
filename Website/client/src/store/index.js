@@ -13,8 +13,9 @@ export default new Vuex.Store({
     isLoggedIn: undefined,
     userData: undefined,
     money: 0,
-    exp: 0,
     animatedMoney: 0,
+    exp: 0,
+    animatedExp: 0,
     ranks: {
       0: {
         name: 'User',

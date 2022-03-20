@@ -79,10 +79,11 @@ export default class User {
     }
   }
   makeLevel(exp) {
-    return 10;
+    return Math.floor((exp + 1000) / 11000);
   }
   async getLevel() {
-    return 10;
+    const exp = await this.get('exp');
+    return Math.floor((exp + 1000) / 11000);
   }
   async getPermission(permission) {
     if (await this.isExists()) {
