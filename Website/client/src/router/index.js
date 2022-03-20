@@ -1,13 +1,19 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Roulette from '../views/pages/roulette/main.vue';
+import Wheel from '../views/pages/wheel/main.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
-    redirect: '/roulette',
+    redirect: '/wheel',
+  },
+  {
+    path: '/wheel',
+    name: 'Wheel',
+    component: Wheel,
   },
   {
     path: '/roulette',
