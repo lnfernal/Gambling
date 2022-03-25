@@ -1,8 +1,10 @@
 <template>
   <div :class="$style.betPanelContainer">
-    <input type="number" v-model="value" aria-label="Bet value" />
-    <div :class="$style.inputAddon"></div><div :class="$style.buttonAddon"></div>
-    <button v-html="`Balance: ${$money($store.state.animatedMoney)}`"></button>
+    <div :class="$style.balanceContainer">
+      <div :class="$style.balanceIconContainer"><i class="fas fa-wallet"></i></div>
+      <div :class="$style.balanceIconContainerArrow"></div>
+      <div :class="$style.balance" v-html="$money($store.state.animatedMoney)"></div>
+    </div>
   </div>
 </template>
 
@@ -25,40 +27,44 @@ export default {
     background-color: var(--dark3NA);
     display: flex;
     position: relative;
-    .inputAddon, .buttonAddon {
-      position: absolute;
-      height: 37px;
-      transform: skewX(-20deg);
-    }
-    .inputAddon {
-      left: 128px + 16px;
-      width: 16px;
-      background-color: var(--dark5NA);
-    }
-    .buttonAddon {
-      left: 128px + 16px + 16px;
-      width: 16px;
-      background-color: var(--defaultColor);
-    }
-    button {
-      background-color: var(--defaultColor);
-      outline: 0;
-      border: 0;
-      font-size: 16px;
-      width: 128px + 64px;
-      z-index: 1;
-      padding-right: 12px;
-    }
-    input {
-      z-index: 1;
-      outline: 0;
-      border: 0;
-      box-sizing: border-box;
-      padding: 8px;
-      font-size: 16px;
-      width: 128px + 16px;
-      background-color: var(--dark5NA);
-      margin-right: 16px;
+
+    .balanceContainer {
+      display: flex;
+      position: relative;
+      .balanceIconContainer {
+        background-color: var(--defaultColor);
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        i {
+          color: #ddd;
+        }
+      }
+      .balanceIconContainerArrow {
+        width: 40px;
+        height: 40px;
+        box-sizing: border-box;
+        border: 20px solid transparent;
+        border-left-color: var(--defaultColor);
+        position: absolute;
+        left: 40px;
+      }
+      .balance {
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--dark6);
+        padding: 0 16px 0 32px;
+        font-weight: bold;
+        &, i {
+          color: var(--defaultColor);
+          text-shadow: 2px 2px 0 var(--dark1);
+        }
+      }
     }
   }
 </style>
