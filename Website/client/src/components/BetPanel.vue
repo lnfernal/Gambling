@@ -2,7 +2,7 @@
   <div :class="$style.betPanelContainer">
     <input type="number" v-model="value" aria-label="Bet value" />
     <div :class="$style.inputAddon"></div><div :class="$style.buttonAddon"></div>
-    <button>Bet</button>
+    <button v-html="`Balance: ${$money($store.state.animatedMoney)}`"></button>
   </div>
 </template>
 
@@ -45,7 +45,7 @@ export default {
       outline: 0;
       border: 0;
       font-size: 16px;
-      width: 64px + 16px;
+      width: 128px + 64px;
       z-index: 1;
       padding-right: 12px;
     }

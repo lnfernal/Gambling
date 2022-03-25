@@ -56,6 +56,7 @@ $profileBarWidth: 310px;
   width: 100%;
   height: calc(100% - $menuHeight);
   flex-basis: 100%;
+  background-color: #111b;
 }
 
 @media only screen and (max-width: 900px) {

@@ -25,12 +25,16 @@ export default {
     };
     app.prototype.$money = (count, currency = 'usd') => {
       count = String(count / 1000);
+      let changedMoney = count;
       if (count.search('\\.') === -1) {
-        return `${count},00`;
+        changedMoney = `${count},00`;
       } else if (count.search('\\.') === count.length - 2) {
-        return `${count}0`.replace('\.', ',');
+        changedMoney = `${count}0`.replace('\.', ',');
       }
-      return count.replace('\.', ',');
+      changedMoney = count.replace('\.', ',');
+      if (currency === 'usd') {
+        return `<i class="fas fa-dollar-sign"></i>${changedMoney}`;
+      }
     };
     app.prototype.$animNumber = (object, name, to, ms = 800) => {
       if (object.animNumberInterval) clearInterval(object.animNumberInterval);
@@ -47,19 +51,26 @@ export default {
         }
       }, 10);
     };
-    app.prototype.$expToLevel = (exp) => {
-      // base / (base + incrementBy)
-      return Math.floor((exp + 1000) / 11000);
-    };
-    app.prototype.$levelToExp = (level) => {
-      // base: 10000; incrementBy: 1000;
-      // a: base + incrementBy
-      // b: -incrementBy
-      return Math.max(0, 11000 * level - 1000);
-    };
+    // app.prototype.$level = (exp) => {
+    //   // base / (base + incrementBy)
+    //   return Math.floor((exp + 1000) / 11000);
+    // };
+    // app.prototype.$exp = (level) => {
+    //   // base: 10000; incrementBy: 1000;
+    //   // a: base + incrementBy
+    //   // b: -incrementBy
+    //   return Math.max(0, 11000 * level - 1000);
+    // };
+
+    // https://www.symbolab.com/solver/function-inverse-calculator
+    app.prototype.$level = (exp) => Math.floor((Math.sqrt(90250000 + 2000 * exp) - 9500) / 1000);
+
+    // exp(level) = pow(level)*(growBy/2) - level * (growBy / 2) + level * default
+    app.prototype.$exp = (level) => level * level * 500 - level * (500 - 10000);
+
     app.prototype.$getLevelProgress = (exp) => {
-      const EXP = app.prototype.$levelToExp;
-      const LEVEL = app.prototype.$expToLevel;
+      const EXP = app.prototype.$exp;
+      const LEVEL = app.prototype.$level;
       const restExp = exp - EXP(LEVEL(exp));
       const expToNextLevel = EXP(LEVEL(exp) + 1) - EXP(LEVEL(exp));
       return Math.floor(restExp / expToNextLevel * 10000) / 10000;

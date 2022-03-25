@@ -22,12 +22,12 @@
       <div :class="$style.userDataBox">
         <div :class="$style.moneyContainer">
           <span :class="$style.money">
-            <span><i class="fas fa-dollar-sign"></i> {{ $money($store.state.animatedMoney) }}</span>
+            <span v-html="$money($store.state.animatedMoney)"></span>
           </span>
         </div>
         <div :class="$style.levelContainer">
           <div :class="$style.level">
-            <span>{{ $expToLevel($store.state.exp) }}</span>
+            <span>{{ $level($store.state.exp) }}</span>
           </div>
           <div :class="$style.expBar"
           :style="`background-size: ${$getLevelProgress($store.state.exp) * 100}%`">
@@ -36,7 +36,7 @@
             </span>
           </div>
           <div :class="$style.level2">
-            <span>{{ $expToLevel($store.state.exp) + 1 }}</span>
+            <span>{{ $level($store.state.exp) + 1 }}</span>
           </div>
         </div>
       </div>
