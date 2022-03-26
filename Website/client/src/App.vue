@@ -23,7 +23,7 @@
         <Menu />
       </div>
       <div :class="$style.routeContainer">
-        <router-view />
+        <keep-alive><router-view /></keep-alive>
       </div>
     </div>
 

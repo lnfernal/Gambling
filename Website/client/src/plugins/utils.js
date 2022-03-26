@@ -18,6 +18,7 @@ const Easing = {
 
 export default {
   install(app) {
+    app.prototype.$easing = Easing;
     app.prototype.$script = (src) => {
       const script = document.createElement('script');
       script.setAttribute('src', src);
@@ -30,8 +31,10 @@ export default {
         changedMoney = `${count},00`;
       } else if (count.search('\\.') === count.length - 2) {
         changedMoney = `${count}0`.replace('\.', ',');
+      } else {
+        changedMoney = count.replace('\.', ',');
       }
-      changedMoney = count.replace('\.', ',');
+      changedMoney = changedMoney.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
       if (currency === 'usd') {
         return `<i class="fas fa-dollar-sign"></i>${changedMoney}`;
       }

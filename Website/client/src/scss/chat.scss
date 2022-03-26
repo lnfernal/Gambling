@@ -5,6 +5,7 @@ $chatRadius: 0px;
 $usernameRadius: 4px;
 
 .chat {
+  z-index: 10;
   background: var(--dark2); 
   width: calc(100% - $chatMargin * 2);
   height: calc(100% - $menuHeight - $chatMargin * 2);
@@ -181,5 +182,11 @@ $usernameRadius: 4px;
         color: #fdcb6e;
       }
     }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .chat {
+    background: var(--dark3NA);
   }
 }
