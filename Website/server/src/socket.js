@@ -1,5 +1,6 @@
 import server from './server';
 import Chat from './chat';
+import Wheel from './wheel';
 
 const CONNECTIONS = {
   /*
@@ -28,10 +29,15 @@ const getOnlineUsers = () => {
 }
 
 Chat.initIO(server.io);
+Wheel.initIO(server.io);
 
 server.io.on('connection', (socket) => {
   const user = socket.handshake.session.steamUser;
   Chat.initSocket(socket);
+  Wheel.initSocket(socket);
+
+  socket.on('startPing', callback => callback(Date.now()));
+
   if (user && user.steamid) {
     const steamid = user.steamid;
     if (!CONNECTIONS[steamid]) CONNECTIONS[steamid] = [];

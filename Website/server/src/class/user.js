@@ -78,6 +78,9 @@ export default class User {
       return (result && result[0]) ? result[0] : false;
     }
   }
+  async changeMoney(value) {
+    return await query('UPDATE `users` SET `money`=`money`+? WHERE `steamid`=?', [value, this.steamid]);
+  }
   makeLevel(exp) {
     return Math.floor((exp + 1000) / 11000);
   }

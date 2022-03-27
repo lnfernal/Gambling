@@ -13,6 +13,14 @@ config.chat = {
   maxChars: 128,
 };
 
+config.wheel = {
+  timeToStart: 15000,
+  rollTime: 8000,
+  resultsTime: 5000,
+  minBet: 1,
+  maxBet: 1000000000000,
+};
+
 config.secret = '235u389J$I3r92j3902D2394$($sdf';
 
 config.MySQL = {

@@ -24,6 +24,10 @@ export default {
       script.setAttribute('src', src);
       document.head.appendChild(script);
     };
+    app.prototype.$now = () => {
+      if (app.prototype.$connection.serverTimeOffset) return Date.now() - app.prototype.$connection.serverTimeOffset;
+      return Date.now();
+    };
     app.prototype.$money = (count, currency = 'usd') => {
       count = String(count / 1000);
       let changedMoney = count;
