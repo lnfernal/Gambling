@@ -2,6 +2,26 @@
   <div>
     <div :class="$style.topContainer">
       <div :class="$style.betPanelContainer">
+        <div :class="$style.gameHistory">
+          <div :class="$style.gameHistoryDraw"
+            :style="`
+            background-color: ${colors.gold};
+            box-shadow: 0 0 6px ${colors.gold};
+            `"
+          ></div>
+          <div :class="$style.gameHistoryDraw"
+            :style="`
+            background-color: ${colors.red};
+            box-shadow: 0 0 6px ${colors.red};
+            `"
+          ></div>
+          <div :class="$style.gameHistoryDraw"
+            :style="`
+            background-color: ${colors.red};
+            box-shadow: 0 0 6px ${colors.red};
+            `"
+          ></div>
+        </div>
         <BetPanel />
       </div>
       <div :class="$style.wheelContainer" @click="roll(1, 0)" @keyup="roll">
@@ -26,40 +46,25 @@
           Hash: 282ce90a0f721b09507335a443e65f343e1e447971fe7ee0f2bae3db02092277
         </div>
         <span ref="gameInfoText" :class="$style.gameInfo"></span>
-        <div :class="$style.gameHistory">
-          <div :class="$style.gameHistoryDraw"
-            :style="`
-            background-color: ${colors.gold};
-            box-shadow: 0 0 6px ${colors.gold};
-            `"
-          ></div>
-          <div :class="$style.gameHistoryDraw"
-            :style="`
-            background-color: ${colors.red};
-            box-shadow: 0 0 6px ${colors.red};
-            `"
-          ></div>
-          <div :class="$style.gameHistoryDraw"
-            :style="`
-            background-color: ${colors.red};
-            box-shadow: 0 0 6px ${colors.red};
-            `"
-          ></div>
-        </div>
       </div>
     </div>
     <div :class="$style.bottomContainer">
-
+      <BetOption text="2x" :color="colors.gray" />
+      <BetOption text="3x" :color="colors.red" />
+      <BetOption text="5x" :color="colors.blue" />
+      <BetOption text="50x" :color="colors.gold" />
     </div>
   </div>
 </template>
 
 <script>
 import BetPanel from '../../../components/BetPanel.vue';
+import BetOption from './BetOption.vue';
 
 export default {
   components: {
     BetPanel,
+    BetOption,
   },
   data() {
     return {
@@ -127,6 +132,9 @@ export default {
   .bottomContainer {
     width: 100%;
     box-sizing: border-box;
+    display: inline-flex;
+    padding: 0 8px 0 8px;
+    margin-top: 32px;
   }
   .topContainer {
     width: 100%;
@@ -140,23 +148,26 @@ export default {
       display: inline-flex;
       justify-content: center;
       align-items: center;
-    }
-    .wheelContainer {
+      position: relative;
+      padding-bottom: 72px;
+
       .gameHistory {
         position: absolute;
-        right: 0;
-        height: 100%;
-        width: 28px;
+        bottom: 32px;
+        height: 24px;
+        width: 100%;
         display: flex;
-        flex-direction: column;
-        justify-content: end;
+        flex-direction: row;
+        justify-content: center;
         .gameHistoryDraw {
-          width: 100%;
-          height: 4px;
-          margin-top: 6px;
+          width: 5px;
+          height: 100%;
+          margin: 0 2px 0 2px;
           border-radius: 2px;
         }
       }
+    }
+    .wheelContainer {
       .gameHash {
         position: absolute;
         font-size: 10px;
@@ -192,6 +203,7 @@ export default {
       }
       img {
         width: 256px + 128px;
+        max-width: 100%;
         margin-top: 32px;
       }
     }
@@ -210,6 +222,11 @@ export default {
           right: 64px;
         }
       }
+    }
+    .bottomContainer {
+      display: flex;
+      flex-direction: column;
+      padding: 0 8px 0 8px;
     }
   }
 </style>
