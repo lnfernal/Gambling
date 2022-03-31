@@ -3,28 +3,19 @@
     <div :class="$style.topContainer">
       <div :class="$style.betPanelContainer">
         <div :class="$style.gameHistory">
-          <div :class="$style.gameHistoryDraw"
+          <div
+            :class="$style.gameHistoryDraw"
+            v-for="draw of gameHistory"
+            :key="draw.id"
             :style="`
-            background-color: ${colors.gold};
-            box-shadow: 0 0 6px ${colors.gold};
-            `"
-          ></div>
-          <div :class="$style.gameHistoryDraw"
-            :style="`
-            background-color: ${colors.red};
-            box-shadow: 0 0 6px ${colors.red};
-            `"
-          ></div>
-          <div :class="$style.gameHistoryDraw"
-            :style="`
-            background-color: ${colors.red};
-            box-shadow: 0 0 6px ${colors.red};
+            background-color: ${colors[draw.color]};
+            box-shadow: 0 0 6px ${colors[draw.color]};
             `"
           ></div>
         </div>
         <BetPanel />
       </div>
-      <div :class="$style.wheelContainer" @click="roll(1, 0)" @keyup="roll">
+      <div :class="$style.wheelContainer" @click="roll(0, 0)" @keyup="roll">
         <img src="@/assets/wheel.png" alt="wheel"
         :style="`transform: rotate(${rotation + 90 - 360 / 54 * 0.5}deg)`" />
         <img src="@/assets/wheel.png" alt="wheel"
@@ -42,17 +33,41 @@
         `"
         ></i>
         <div :class="$style.gameHash">
-          Round ID: 542343<br />
-          Hash: 282ce90a0f721b09507335a443e65f343e1e447971fe7ee0f2bae3db02092277
+          Round ID: {{ roundID }}<br />
+          Hash: {{ hash }}
         </div>
         <span ref="gameInfoText" :class="$style.gameInfo"></span>
       </div>
     </div>
     <div :class="$style.bottomContainer">
-      <BetOption text="2x" :color="colors.gray" />
-      <BetOption text="3x" :color="colors.red" />
-      <BetOption text="5x" :color="colors.blue" />
-      <BetOption text="50x" :color="colors.gold" />
+      <BetOption
+        text="2x"
+        :color="colors.gray"
+        :users="grayBets.length"
+        :cash="grayCash"
+        :bets="grayBets"
+      />
+      <BetOption
+        text="3x"
+        :color="colors.red"
+        :users="redBets.length"
+        :cash="redCash"
+        :bets="redBets"
+      />
+      <BetOption
+        text="5x"
+        :color="colors.blue"
+        :users="blueBets.length"
+        :cash="blueCash"
+        :bets="blueBets"
+      />
+      <BetOption
+        text="50x"
+        :color="colors.gold"
+        :users="goldBets.length"
+        :cash="goldCash"
+        :bets="goldBets"
+      />
     </div>
   </div>
 </template>
@@ -68,6 +83,54 @@ export default {
   },
   data() {
     return {
+      grayCash: 10,
+      redCash: 123220,
+      blueCash: 100023000,
+      goldCash: 1,
+      grayBets: [],
+      redBets: [],
+      blueBets: [
+        {
+          username: 'Pevo',
+          level: 421,
+          money: 1500,
+        },
+        {
+          username: 'Abc',
+          level: 5,
+          money: 500,
+        },
+        {
+          username: 'Cba',
+          level: 0,
+          money: 23459,
+        },
+      ],
+      goldBets: [],
+      gameHistory: [
+        {
+          id: 323,
+          hash: 'cejcfeuiorfrjeo',
+          color: 'blue',
+        },
+        {
+          id: 22,
+          hash: 'cejcfeuiorfrjeo',
+          color: 'red',
+        },
+        {
+          id: 13,
+          hash: 'cejcfeuiorfrjeo',
+          color: 'blue',
+        },
+        {
+          id: 35323,
+          hash: 'cejcfeuiorfrjeo',
+          color: 'gray',
+        },
+      ],
+      roundID: '542343',
+      hash: '282ce90a0f721b09507335a443e65f343e1e447971fe7ee0f2bae3db02092277',
       rotation: 0, // (53.51 / 54) * 360,
       interval: undefined,
       timeout: undefined,

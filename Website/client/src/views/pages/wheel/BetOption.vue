@@ -13,32 +13,26 @@
     </button>
     <div :class="$style.colorInfo">
       <div :class="$style.colorInfoLeft">
-        <i class="fas fa-user"></i> 32
+        <i class="fas fa-user"></i> {{ animatedUsers.value }}
       </div>
       <div :class="$style.colorInfoRight"
-        v-html="$money(43240)"
+        v-html="$money(animatedCash.value)"
       >
       </div>
     </div>
     <div :class="$style.bets">
-      <div :class="$style.bet">
+      <div
+        :class="$style.bet"
+        v-for="(bet, i) of bets"
+        :key="i"
+      >
         <div :class="$style.betLeft">
           <span :class="$style.betLeftLevel">
-            <span>54</span>
+            <span>{{ bet.level }}</span>
           </span>
-          Pevo
+          {{ bet.username }}
         </div>
-        <div :class="$style.betRight" v-html="$money(3240)"></div>
-      </div>
-
-      <div :class="$style.bet">
-        <div :class="$style.betLeft">
-          <span :class="$style.betLeftLevel">
-            <span>0</span>
-          </span>
-          Pevo
-        </div>
-        <div :class="$style.betRight" v-html="$money(3240)"></div>
+        <div :class="$style.betRight" v-html="$money(bet.money)"></div>
       </div>
     </div>
   </div>
@@ -46,7 +40,17 @@
 
 <script>
 export default {
+  data() {
+    return {
+      animatedCash: { value: 0 },
+      animatedUsers: { value: 0 },
+    };
+  },
   props: {
+    bets: {
+      type: Array,
+      default: () => [],
+    },
     text: {
       type: String,
       default: '',
@@ -54,6 +58,29 @@ export default {
     color: {
       type: String,
       default: 'transparent',
+    },
+    users: {
+      type: Number,
+      default: 0,
+    },
+    cash: {
+      type: Number,
+      default: 0,
+    },
+  },
+  watch: {
+    users: {
+      immediate: true,
+      handler(val) {
+        this.$animNumber(this.animatedUsers, 'value', val, 800, 1);
+      },
+    },
+    cash: {
+      immediate: true,
+      handler(val) {
+        console.log(val);
+        this.$animNumber(this.animatedCash, 'value', val, 800, 10);
+      },
     },
   },
 };
@@ -118,12 +145,14 @@ export default {
       }
     }
     .colorInfoLeft {
+      flex-basis: 30%;
       i {
         margin-right: 4px;
       }
     }
     .colorInfoRight {
       justify-content: right;
+      flex-basis: 70%;
     }
   }
   button {

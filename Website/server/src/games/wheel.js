@@ -76,24 +76,26 @@ Game.newRound = async () => {
 // Check if there's an unsolved game that started before server crash
 const start = async () => {
   const result = await query('SELECT * FROM `wheel` WHERE `isFinished`=0 ORDER BY `id` DESC LIMIT 1');
-  await query('UPDATE `wheel` SET `isFinished`=1 WHERE `id`=?', [result[0].id]);
-  if (result && result[0]) {
-    const bets = await query('SELECT users.id, users.steamid, wheel_bets.gid, wheel_bets.color, wheel_bets.amount FROM `wheel_bets`,`users` WHERE wheel_bets.gid=? AND wheel_bets.uid=users.id', [result[0].id]);
-    for (let i in bets) {
-      const bet = bets[i];
-      const Player = new User(bet.steamid);
-      if (Game.colors[result[0].number] === bet.color) {
-        await Player.changeMoney(
-          bet.amount * (
-            bet.color === 'gray'
-              ? 2
-              : bet.color === 'red'
-                ? 3
-                : bet.color === 'blue'
-                  ? 5
-                  : 50
-          )
-        );
+  if (result[0]) {
+    await query('UPDATE `wheel` SET `isFinished`=1 WHERE `id`=?', [result[0].id]);
+    if (result && result[0]) {
+      const bets = await query('SELECT users.id, users.steamid, wheel_bets.gid, wheel_bets.color, wheel_bets.amount FROM `wheel_bets`,`users` WHERE wheel_bets.gid=? AND wheel_bets.uid=users.id', [result[0].id]);
+      for (let i in bets) {
+        const bet = bets[i];
+        const Player = new User(bet.steamid);
+        if (Game.colors[result[0].number] === bet.color) {
+          await Player.changeMoney(
+            bet.amount * (
+              bet.color === 'gray'
+                ? 2
+                : bet.color === 'red'
+                  ? 3
+                  : bet.color === 'blue'
+                    ? 5
+                    : 50
+            )
+          );
+        }
       }
     }
   }

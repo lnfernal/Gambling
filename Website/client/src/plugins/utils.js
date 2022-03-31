@@ -32,25 +32,25 @@ export default {
       count = String(count / 1000);
       let changedMoney = count;
       if (count.search('\\.') === -1) {
-        changedMoney = `${count},00`;
+        changedMoney = `${count}.00`;
       } else if (count.search('\\.') === count.length - 2) {
-        changedMoney = `${count}0`.replace('\.', ',');
+        changedMoney = `${count}0`.replace('\.', '.');
       } else {
-        changedMoney = count.replace('\.', ',');
+        changedMoney = count.replace('\.', '.');
       }
       changedMoney = changedMoney.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
       if (currency === 'usd') {
         return `<i class="fas fa-dollar-sign"></i>${changedMoney}`;
       }
     };
-    app.prototype.$animNumber = (object, name, to, ms = 800) => {
+    app.prototype.$animNumber = (object, name, to, ms = 800, round = 10) => {
       if (object.animNumberInterval) clearInterval(object.animNumberInterval);
       let progress = 0;
       const start = object[name];
       const difference = to - object[name];
       object.animNumberInterval = setInterval(() => {
         progress += 10;
-        object[name] = Math.round((start + difference * (Easing.easeOutQuart(progress / ms))) / 10) * 10;
+        object[name] = Math.round((start + difference * (Easing.easeOutQuart(progress / ms))) / round) * round;
         if (progress >= ms) {
           clearInterval(object.animNumberInterval);
           delete object.animNumberInterval;
