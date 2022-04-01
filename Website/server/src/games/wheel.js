@@ -31,7 +31,9 @@ Game.colors = [
 
 Game.initIO = (io) => {
   Game.io = io
-  start();
+  setTimeout(() => {
+    start();
+  }, 5000);
 };
 
 Game.initSocket = async (socket) => {
@@ -70,8 +72,19 @@ Game.newRound = async () => {
     id: Game.currentGameID,
     hash: Game.hash,
     startTime: Game.startTime,
+    rollTime: Game.startTime + config.wheel.timeToStart,
   });
-}
+
+  setTimeout(Game.roll, config.wheel.timeToStart);
+};
+
+Game.roll = () => {
+  Game.io.emit('wheel:roll', {
+    id: Game.currentGameID,
+    hash: Game.hash,
+    number: Game.number,
+  });
+};
 
 // Check if there's an unsolved game that started before server crash
 const start = async () => {

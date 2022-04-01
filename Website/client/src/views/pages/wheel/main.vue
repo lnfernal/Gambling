@@ -13,7 +13,7 @@
             `"
           ></div>
         </div>
-        <BetPanel />
+        <BetPanel ref="betPanel" />
       </div>
       <div :class="$style.wheelContainer" @click="roll(0, 0)" @keyup="roll">
         <img src="@/assets/wheel.png" alt="wheel"
@@ -46,6 +46,7 @@
         :users="grayBets.length"
         :cash="grayCash"
         :bets="grayBets"
+        @placeBet="placeBet('gray')"
       />
       <BetOption
         text="3x"
@@ -53,6 +54,7 @@
         :users="redBets.length"
         :cash="redCash"
         :bets="redBets"
+        @placeBet="placeBet('red')"
       />
       <BetOption
         text="5x"
@@ -60,6 +62,7 @@
         :users="blueBets.length"
         :cash="blueCash"
         :bets="blueBets"
+        @placeBet="placeBet('blue')"
       />
       <BetOption
         text="50x"
@@ -67,6 +70,7 @@
         :users="goldBets.length"
         :cash="goldCash"
         :bets="goldBets"
+        @placeBet="placeBet('gold')"
       />
     </div>
   </div>
@@ -153,7 +157,16 @@ export default {
       },
     };
   },
+  mounted() {
+    this.$socket.on('wheel:newRound', (data) => {
+      console.log(data);
+    });
+  },
   methods: {
+    placeBet(color) {
+      console.log(this.$refs.betPanel.value * 1000);
+      console.log(color);
+    },
     roll(number, offset = 0, time = 8000) {
       this.$refs.gameInfoText.innerHTML = 'Rolling...';
       if (this.interval) {

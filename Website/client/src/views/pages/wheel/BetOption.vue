@@ -6,6 +6,7 @@
         border: 2px solid ${color};
         box-shadow: 0 0 16px ${color};
       `"
+      @click="$emit(`placeBet`, color)"
     >
       <span>
         {{ text }}
@@ -78,7 +79,6 @@ export default {
     cash: {
       immediate: true,
       handler(val) {
-        console.log(val);
         this.$animNumber(this.animatedCash, 'value', val, 800, 10);
       },
     },

@@ -36,19 +36,17 @@
 <script>
 export default {
   methods: {
-    clear() { this.$refs.betAmount.value = '0.00'; },
-    allIn() { this.$refs.betAmount.value = this.$store.state.money / 1000; },
+    clear() { this.value = '0.00'; },
+    allIn() { this.value = this.$store.state.money / 1000; },
     divide() {
-      this
-        .$refs.betAmount.value = Math.floor((Number(this.$refs.betAmount.value) / 2) * 1000) / 1000;
+      this.value = Math.floor((Number(this.value) / 2) * 1000) / 1000;
     },
-    double() { this.$refs.betAmount.value *= 2; },
+    double() { this.value *= 2; },
     add(n) {
-      this.$refs.betAmount
-        .value = Math.round((Number(this.$refs.betAmount.value) + n) * 1000) / 1000;
+      this.value = Math.round((Number(this.value) + n) * 1000) / 1000;
     },
     money(balance, value) {
-      if (Number(this.value) > 0) {
+      if (false) { // (Number(this.value) > 0) {
         return value;
       }
       return balance;
